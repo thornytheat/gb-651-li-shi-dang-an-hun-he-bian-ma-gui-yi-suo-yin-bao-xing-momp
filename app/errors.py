@@ -1,10 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from .domain import DomainError
 
-class DomainError(ValueError):
-    def __init__(self, code: str, message: str):
-        self.code, self.message = code, message
-        super().__init__(message)
 
 def install(app: FastAPI) -> None:
     @app.exception_handler(DomainError)
